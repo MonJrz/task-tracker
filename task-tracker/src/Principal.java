@@ -1,16 +1,20 @@
 import java.util.Scanner;
 
 public class Principal {
+
     public static void main(String[] args) {
-        mostrarMenu();
+        correrMenu();
     }
 
-    private static void mostrarMenu() {
+    private static void correrMenu() {
         //Se crea línea de comando para ingresar las opciones ofrecidas en el menú.
-        Scanner comando = new Scanner(System.in);
+        verOpciones();
+        Scanner input = new Scanner(System.in);
+        String comando;
+        String salida = "salir";
 
 
-        while (!(comando.nextLine().toLowerCase().equals("salir"))){
+        while (!(comando = input.nextLine()).equalsIgnoreCase(salida)) {
             switch(comando){
                 case "agregar" -> agregarTarea();
                 case "modificar" -> modificarTarea();
@@ -20,14 +24,47 @@ public class Principal {
                 case "listar" ->listarTareas();
                 case "tareas en progreso" -> listarTareasEnProgreso();
                 case "tareas terminadas" -> listarTareasTerminadas();
-                case "menu" -> mostrarMenu();
+                case "menu" -> correrMenu();
                 default -> System.out.println("Comando no encontrado. Escribe 'menu' para ver las opciones.");
             }
         }
     salir();
     }
 
+    private static void verOpciones() {
+        System.out.println("""
+                
+                        ˖⁺‧₊˚♡˚₊‧⁺˖ Menú ˖⁺‧₊˚♡˚₊‧⁺˖
+                
+                Escribe la opción que quieras realizar:
+                
+                ♡ Agregar
+                ♡ Modificar
+                ♡ Eliminar
+                ♡ Comenzar
+                ♡ Finalizar
+                ♡ Listar
+                ♡ Tareas en progreso
+                ♡ Tareas terminas
+                ♡ Salir
+                
+                """
+        );
+
+    }
+
     private static void salir() {
+        System.out.println("""
+                
+                ✮ ⋆ ˚｡𖦹 ⋆｡°✩
+                
+                Cerrando aplicación...
+                
+                𝓖𝓸𝓸𝓭𝓫𝔂𝓮 (˶ᵔ ᵕ ᵔ˶)
+                
+                ✮ ⋆ ˚｡𖦹 ⋆｡°✩
+                """);
+
     }
 
     private static void listarTareasTerminadas() {
